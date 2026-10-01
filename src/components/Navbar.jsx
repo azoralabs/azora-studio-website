@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { DocsIcon, EcosystemIcon, EngineIcon, HeartIcon, TerminalIcon } from '../AzIcons.jsx'
 
 const productLinks = [
-  { label: 'Documentation', href: 'https://docs.azorastudio.org' },
-  { label: 'Engine', href: 'https://azoraengine.org' },
-  { label: 'Language', href: 'https://azoralang.org' },
+  { label: 'Documentation', href: 'https://docs.azorastudio.org', icon: DocsIcon },
+  { label: 'Engine', href: 'https://azoraengine.org', icon: EngineIcon },
+  { label: 'Language', href: 'https://azoralang.org', icon: TerminalIcon },
 ]
 
 const ecosystemLinks = [
@@ -48,7 +49,9 @@ export default function Navbar() {
           <span className="version-tag">wip</span>
         </div>
         <div className="site-nav__links">
-          {productLinks.map((link) => <a key={link.href} href={link.href}>{link.label}</a>)}
+          {productLinks.map(({ icon: Icon, ...link }) => (
+            <a key={link.href} href={link.href}><Icon />{link.label}</a>
+          ))}
           <div className="site-nav__ecosystem" ref={ecosystemRef}>
             <button
               className={`site-nav__ecosystem-trigger ${ecosystemOpen ? 'is-open' : ''}`}
@@ -56,7 +59,7 @@ export default function Navbar() {
               aria-haspopup="menu"
               onClick={() => setEcosystemOpen((open) => !open)}
             >
-              Ecosystem
+              <EcosystemIcon />Ecosystem
             </button>
             {ecosystemOpen && (
               <div className="site-nav__dropdown" role="menu">
@@ -68,7 +71,7 @@ export default function Navbar() {
               </div>
             )}
           </div>
-          <a className="site-nav__donate" href="https://azoralabs.org/donate">Donate</a>
+          <a className="site-nav__donate" href="https://azoralabs.org/donate"><HeartIcon />Donate</a>
         </div>
         <button
           onClick={() => setMobileOpen((open) => !open)}
@@ -81,7 +84,9 @@ export default function Navbar() {
       </div>
       {mobileOpen && (
         <div className="site-nav__mobile">
-          {productLinks.map((link) => <a key={link.href} href={link.href}>{link.label}</a>)}
+          {productLinks.map(({ icon: Icon, ...link }) => (
+            <a key={link.href} href={link.href}><Icon />{link.label}</a>
+          ))}
           <span className="site-nav__mobile-label">Azora Ecosystem</span>
           {ecosystemLinks.map((link) => <a key={link.href} href={link.href}>{link.label}</a>)}
           <a className="site-nav__mobile-donate" href="https://azoralabs.org/donate">Donate</a>
