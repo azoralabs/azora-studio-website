@@ -40,6 +40,11 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Stage published macOS downloads
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: node scripts/stage-macos-release.mjs macos-v0.1-dev
+
       - name: Validate deployment key
         env:
           DEPLOY_SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_SSH_PRIVATE_KEY }}

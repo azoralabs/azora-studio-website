@@ -1,5 +1,6 @@
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import MacDownload from './components/MacDownload'
 
 const features = [
   {
@@ -124,7 +125,7 @@ export default function App() {
 
           {/* Hero */}
           <div className="text-center mb-24">
-            <img src="/assets/azora_logo.svg" alt="Azora Studio" className="h-16 w-16 mx-auto mb-6" />
+            <img src="/assets/azora-studio-mark.png" alt="" className="h-16 w-16 mx-auto mb-6" />
             <h1 className="text-5xl font-bold text-az-10 mb-4">
               Azora <span className="text-az-primary">Studio</span>
             </h1>
@@ -133,12 +134,10 @@ export default function App() {
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <a
-                href="https://docs.azorastudio.org"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#download"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-az-primary text-white font-medium hover:brightness-110 transition"
               >
-                Get Started
+                Get Azora Launcher
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M5 3l6 5-6 5" />
                 </svg>
@@ -153,6 +152,8 @@ export default function App() {
               </a>
             </div>
           </div>
+
+          <MacDownload />
 
           {/* Features */}
           <section className="mb-24">

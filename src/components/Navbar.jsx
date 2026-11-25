@@ -42,7 +42,7 @@ export default function Navbar() {
     <nav className="site-nav">
       <div className="site-nav__inner">
         <Link to="/" className="site-nav__brand" aria-label="Azora Studio home">
-          <img src="/assets/azora_logo.svg" alt="" />
+          <img src="/assets/azora-studio-mark.png" alt="" />
           <span>Azora Studio</span>
         </Link>
         <div className="site-nav__meta">
