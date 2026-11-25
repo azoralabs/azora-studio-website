@@ -72,8 +72,19 @@ jobs:
       - name: Deploy to Azora VPS
         run: >
           rsync -rlptDz --delete --exclude='.htaccess'
+          --exclude='/downloads/macos-arm64/'
           -e "ssh -i ~/.ssh/azora_deploy -o IdentitiesOnly=yes"
           dist/ azora-deploy@152.239.116.142:html/
+
+      - name: Publish macOS archives and then the catalog
+        run: |
+          if [ -f dist/downloads/macos-arm64/catalog.json ]; then
+            rsync -rlptz --exclude='/downloads/macos-arm64/catalog.json' \
+              -e "ssh -i ~/.ssh/azora_deploy -o IdentitiesOnly=yes" \
+              dist/downloads azora-deploy@152.239.116.142:html/
+            rsync -rlptz -e "ssh -i ~/.ssh/azora_deploy -o IdentitiesOnly=yes" \
+              dist/downloads/macos-arm64/catalog.json azora-deploy@152.239.116.142:html/downloads/macos-arm64/
+          fi
 
       - name: Remove SSH key
         if: always()
